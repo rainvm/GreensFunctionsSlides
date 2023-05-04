@@ -44,16 +44,11 @@ class Limit(Scene):
             y_range=[0, 3, 0.5],
             x_length=4,
             y_length=4,
-<<<<<<< Updated upstream
             axis_config={'font_size': 18, "stroke_color": BLACK}
         )
         axes.set_y(-1)
-=======
-            axis_config={'font_size': 18, 'color': BLACK, },
-        )
         axes.set_y(-1)
         axes.color = BLACK
->>>>>>> Stashed changes
         axes.add_coordinates({0, 0.5, 1, 1.5, 2}, {0, 0.5, 1, 1.5, 2, 2.5, 3})
         axes.x_axis.numbers.color = BLACK
         axes.y_axis.numbers.color = BLACK
@@ -75,13 +70,10 @@ class Limit(Scene):
         limitFunctionText = MathTex(r"f(x)=\frac{x^2-1}{x-1}", color=BLACK, font_size=24)
         limitFunctionText.set_x(-3.5)
         limitFunctionText.set_y(2.5)
-<<<<<<< Updated upstream
         hole = Circle(0.0001, fill_opacity=1, fill_color=WHITE,)
-=======
         vert = axes.plot_implicit_curve(lambda x, y: x - 1, color=BLACK)
         vert.y_range = {0, 2}
         hole = Circle(0.0001, fill_opacity=1, fill_color=WHITE, )
->>>>>>> Stashed changes
         holePos = axes.coords_to_point(1, 2)
         hole.set_x(holePos[0])
         hole.set_y(holePos[1])
@@ -93,13 +85,29 @@ class Limit(Scene):
         self.next_section(type=PresentationSectionType.NORMAL)
         self.add(hole)
         self.play(hole.animate.scale(500))
-<<<<<<< Updated upstream
         self.next_section(type=PresentationSectionType.NORMAL)
         self.play(Create(limfRight), Create(limfLeft), Create(rightLimitDot), Create(leftLimitDot))
         self.wait()
         self.play(MoveAlongPath(rightLimitDot, limfRight), rate_func=linear)
-=======
 
+class Derivative(Scene):
+    def construct(self):
+        self.next_section(type=PresentationSectionType.NORMAL)
+        title = Text("The Derivative", color=BLACK)
+        title.set_y(3.5)
+        title.set_x(-4)
+        axes = Axes(
+            tips=False,
+            x_range=[0, 2, 0.5],
+            y_range=[0, 3, 0.5],
+            x_length=4,
+            y_length=4,
+            axis_config={'font_size': 18, "stroke_color": BLACK}
+        )
+        axes.set_y(-1)
+        axes.add_coordinates({0, 0.5, 1, 1.5, 2}, {0, 0.5, 1, 1.5, 2, 2.5, 3})
+        axes.x_axis.numbers.color = BLACK
+        axes.y_axis.numbers.color = BLACK
 
 class Derivative(Scene):
     def construct(self):
@@ -153,4 +161,3 @@ class Derivative(Scene):
         self.play(Create(function), Create(tanPlot))
         tracker.add_updater(lambda mobject, dt: mobject.increment_value(dt))
         self.wait(4)
->>>>>>> Stashed changes
