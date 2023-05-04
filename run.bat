@@ -1,1 +1,1 @@
-manim --save_sections main.py
+manim --save_sections main.py -p
