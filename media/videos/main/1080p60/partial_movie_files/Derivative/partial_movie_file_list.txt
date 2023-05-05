@@ -1,3 +1,2 @@
 # This file is used internally by FFMPEG.
-file 'file:C:/Users/coyne/PycharmProjects/GreensFunctionsSlides/media/videos/main/1080p60/partial_movie_files/Derivative/3315472194_762630203_4108993610.mp4'
-file 'file:C:/Users/coyne/PycharmProjects/GreensFunctionsSlides/media/videos/main/1080p60/partial_movie_files/Derivative/2277330559_1676967760_1274246536.mp4'
+file 'file:C:/Users/Ryan/PycharmProjects/GreensFunctionsSlides/media/videos/main/1080p60/partial_movie_files/Derivative/2709266906_4097552240_3031589190.mp4'
