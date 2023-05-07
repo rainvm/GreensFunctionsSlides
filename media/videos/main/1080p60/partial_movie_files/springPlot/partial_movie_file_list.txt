@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/coyne/PycharmProjects/GreensFunctionsSlides/media/videos/main/1080p60/partial_movie_files/springPlot/3315472194_342215349_1523491265.mp4'

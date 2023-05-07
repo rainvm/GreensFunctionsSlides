@@ -1,0 +1,101 @@
+[
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0000.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.000000",
+        "nb_frames": "60"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0001.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.000000",
+        "nb_frames": "60"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0002.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.000000",
+        "nb_frames": "60"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0003.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.000000",
+        "nb_frames": "60"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0004.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.000000",
+        "nb_frames": "60"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0005.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.000000",
+        "nb_frames": "60"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0006.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "0.800000",
+        "nb_frames": "48"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0007.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "0.800000",
+        "nb_frames": "48"
+    },
+    {
+        "name": "unnamed",
+        "type": "presentation.normal",
+        "video": "Integral_0008.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "0.800000",
+        "nb_frames": "48"
+    }
+]

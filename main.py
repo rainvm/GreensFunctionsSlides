@@ -80,6 +80,9 @@ class Limit(Scene):
         self.next_section(type=PresentationSectionType.NORMAL)
         self.add(hole)
         self.play(hole.animate.scale(50))
+        self.next_section(type=PresentationSectionType.NORMAL)
+        limNotation = MathTex(r"\lim_{x\to 2} f(x)= \lim_{x\to 2} \frac{x^2-2\cdot x}{x-2} = 2", color=BLACK, font_size=fontsize).set_x(2)
+        self.play(Transform(undefined2, limNotation))
 
 
 class Derivative(Scene):
@@ -200,11 +203,11 @@ class Integral(Scene):
 
         antiDeriv0A = MathTex(r"=", color=RED_E, font_size=fontsize).shift(2 * UP).shift(2 * RIGHT)
         antiDeriv0B = MathTex(r"\int f'(x) dx", color=RED_E, font_size=fontsize).next_to(antiDeriv0A, LEFT)
-        antiDeriv0C = MathTex(r"f(x)", color=RED_E, font_size=fontsize).next_to(antiDeriv0A, RIGHT)
+        antiDeriv0C = MathTex(r"f(x) + c", color=RED_E, font_size=fontsize).next_to(antiDeriv0A, RIGHT)
 
         antiDeriv1A = MathTex(r" = ", color=RED_E, font_size=fontsize).shift(2 * UP).shift(2 * RIGHT)
         antiDeriv1B = MathTex(r"\int f(x) dx ", color=RED_E, font_size=fontsize).next_to(antiDeriv1A, LEFT)
-        antiDeriv1C = MathTex(r"F(x)", color=RED_E, font_size=fontsize).next_to(antiDeriv1A, RIGHT)
+        antiDeriv1C = MathTex(r"F(x) + c", color=RED_E, font_size=fontsize).next_to(antiDeriv1A, RIGHT)
 
         # antiDeriv2 = MathTex(r"\int \sin x dx = -\cos x", color=PURPLE_C).shift(2*RIGHT).shift(DOWN)
 
@@ -276,15 +279,15 @@ class DiffEQ(Scene):
 
         operator2 = MathTex(r"= ", color=BLACK, font_size=40).next_to(line4, 2*DOWN).shift(LEFT)
         operator1 = MathTex(r"\mathbf{L} ", color=BLACK, font_size=40).next_to(operator2, LEFT)
-        operator3 = MathTex(r"\frac{d^2}{dt^2} + b \frac{d}{dt} + k", color=BLACK, font_size=40).next_to(operator2, RIGHT)
+        operator3 = MathTex(r"m\frac{d^2}{dt^2} + b \frac{d}{dt} + k", color=BLACK, font_size=40).next_to(operator2, RIGHT)
         opeq1 = MathTex(r"= ", color=BLACK, font_size=40).next_to(operator2, 3*DOWN)
         opeq2 = MathTex(r"\mathbf{L} x ", color=BLACK, font_size=40).next_to(opeq1, LEFT)
         opeq3 = MathTex(r"f(t)", color=BLACK, font_size=40).next_to(opeq1, RIGHT)
 
-        spring = ImageMobject("spring-mass.png").shift(4 * RIGHT)
+        spring = ImageMobject("spring-mass.png").shift(4 * RIGHT).scale(2)
         spring.scale(0.25)
         navier_stokes = MathTex(r"\frac{\partial \textbf{u}}{\partial t} + (\textbf{u}\cdot \nabla)\textbf{u}"
-                                r"-\nu \nabla^2\textbf{u}=-\frac{1}{\rho}\nabla p + g", color=BLACK,
+                                r"-\nu \nabla^2\textbf{u}=-\frac{1}{\rho}\nabla p + \mathbf{g}", color=BLACK,
                                 font_size=30).next_to(line3, DOWN)
         spring_mass = MathTex(r"m \frac{d^2x}{dt^2} + b \frac{dx}{dt} + kx = f(t).", color=BLACK, font_size=30).next_to(
             spring, UP * 2)
@@ -336,9 +339,10 @@ class Adjoint(Scene):
         line3 = Tex(r"Example: \(a(x)\frac{d^2}{dx^2}+b(x)\frac{d}{dx}+c(x)\)", color=BLACK, font_size=40).next_to(bullet3, RIGHT)
         line2 = Tex(r"Self adjoint if \( \mathbf{L} = \mathbf{L^*} \)", color=BLACK, font_size=40).next_to(bullet2, RIGHT)
         line4 = Tex(r"Second order linear: self adjoint if \(a'=b\)", color=BLACK, font_size=40).next_to(bullet4, RIGHT)
+        wPlot = ImageMobject("deltaseq.png")
         self.add(title, bullet1, line1, intByParts, table, line3, line2, bullet3, bullet2, line4, bullet4)
+        self.add(wPlot)
         self.wait()
-
 
 class Delta(Scene):
     def construct(self):
@@ -346,40 +350,44 @@ class Delta(Scene):
         title = Text("The Dirac Delta Function", color=BLACK)
         title.align_to(titleDot, LEFT)
         title.align_to(titleDot, UP)
-        bullet1 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(UP)
-        bullet2 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6)
-        bullet3 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(DOWN)
+        bullet1 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(2*UP)
+        bullet2 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(UP)
+        bullet3 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6)
+        bullet5 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(DOWN)
         bullet4 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(2 * DOWN)
-        line1 = Tex(r"Unit point mass", color=BLACK, font_size=40).next_to(bullet1, RIGHT)
-        line2 = Tex(r"", color=BLACK, font_size=40).next_to(bullet2, RIGHT)
+        line1 = Tex(r"Unit point mass with unknown mass density, \(w(x)\)", color=BLACK, font_size=40).next_to(bullet1, RIGHT)
+        line2 = Tex(r"Area under \(w(x)\) is 1:", color=BLACK, font_size=40).next_to(bullet2, RIGHT)
+        deltaInt = MathTex(r"\int_{-\infty}^{\infty} w(x) dx = 1", color=BLACK, font_size=40).next_to(line2, RIGHT).shift(0.5*RIGHT)
+        wseq = MathTex(r"w_k(x)=\frac{k}{\pi (1+k^2x^2)}", color=BLACK, font_size=40)\
+            .next_to(line2, DOWN)
+        delta = ImageMobject("deltaseq.png").scale(0.1).shift(RIGHT*3).shift(DOWN*1.5)
         line3 = Tex(r"Point mass", color=BLACK, font_size=40).next_to(bullet3, RIGHT)
-        line4 = Tex(r"Point mass", color=BLACK, font_size=40).next_to(bullet4, RIGHT)
-
-        self.add(title)
+        ddef = MathTex(r"\lim_{k\to \inf}\int_{-\infty}^{\infty} h(x)w_k(x)dx = \int_{-\infty}^{\infty} h(x)\delta (x)dx", color=BLACK, font_size=40).next_to(bullet5, RIGHT)
+        line4 = MathTex(r"\int_{a}^{b} h(x)\delta(x-c)dx = h(c)", color=BLACK, font_size=40).next_to(bullet4, RIGHT)
+        line4cont = Tex(r" if c is between a and b", color=BLACK, font_size=40).next_to(line4, DOWN)
+        self.add(title, bullet1, bullet2, bullet3, bullet4, line1, line2, deltaInt, wseq, delta, line4, line4cont, ddef, bullet5)
+        self.wait(1)
 
 
 
 class George(Scene):
     def construct(self):
         self.next_section(type=PresentationSectionType.NORMAL)
-        title = Text("The Method of Green's Functions", color=BLACK)
+        title = Text("George Green (1793-1841)", color=BLACK)
         title.align_to(titleDot, LEFT)
         title.align_to(titleDot, UP)
         bullet1 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(2 * UP)
-        bullet2 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(UP)
-        bullet3 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6)
-        bullet4 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(DOWN)
-        bullet5 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(2*DOWN)
-        bullet6 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(3*DOWN)
+        bullet3 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(UP)
+        bullet4 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6)
+        bullet5 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(DOWN)
+        bullet6 = Dot(radius=0.05, color=BLACK).shift(LEFT * 6).shift(2*DOWN)
         line1 = Tex(r"Son of a baker with only one year of schooling as a child",
                     color=BLACK, font_size=40).next_to(bullet1, RIGHT)
-        line2 = Tex(r"Disliked the bakery work", color=BLACK, font_size=40).next_to(bullet2, RIGHT)
         line3 = Tex(r"His father bought a windmill because of rising hostility toward bakers", color=BLACK, font_size=40).next_to(bullet3, RIGHT)
-        line4 = Tex(r"Also disliked milling", color=BLACK, font_size=40).next_to(bullet4, RIGHT)
+        line4 = Tex(r"Was unhappy with baking and milling", color=BLACK, font_size=40).next_to(bullet4, RIGHT)
         line5 = Tex(r"Published an essay on Electricity and Magnetism in 1828", color=BLACK, font_size=40).next_to(bullet5, RIGHT)
         line6 = Tex(r"Inherited from his father and studied mathematics at Cambridge", color=BLACK, font_size=40).next_to(bullet6, RIGHT)
-
-        self.add(title, bullet1, bullet4, bullet3, bullet2, line1, line2, line3, line4, line5, bullet5, bullet6, line6)
+        self.add(title, bullet1, bullet4, bullet3, line1, line3, line4, line5, bullet5, bullet6, line6)
         self.wait(1)
 
 class GreensFunctions(Scene):
@@ -395,9 +403,20 @@ class GreensFunctions(Scene):
         line1 = Tex(r"Find solutions to linear differential equations of the form", color=BLACK, font_size=40).next_to(bullet1, RIGHT)
         diffeq = MathTex(r" \mathbf{L}u=\phi ", color=BLACK, font_size=40).next_to(line1,DOWN)
         line1cont = Tex(r"over the interval a \(\leq x \leq\) b.", color=BLACK, font_size=40).next_to(line1, DOWN*3).align_to(line1, LEFT)
-        line2 = Tex(r"Determine the ajoint, \(\mathbf{L^*}\)", color=BLACK, font_size=40).next_to(bullet2, RIGHT)
+        line2 = Tex(r"Determine the adjoint, \(\mathbf{L^*}\)", color=BLACK, font_size=40).next_to(bullet2, RIGHT)
         line3 = Tex(r"Let \(\mathbf{L^*}G = \delta \)", color=BLACK, font_size=40).next_to(bullet3, RIGHT)
         line4 = Tex(r"Solving the differential equation becomes a problem of integration", color=BLACK, font_size=40).next_to(bullet4, RIGHT)
 
         self.add(title, bullet1, line1, diffeq, line1cont, bullet2, line2, bullet3, bullet4, line3, line4)
+        self.wait(1)
+
+class String(Scene):
+    def construct(self):
+        self.next_section(type=PresentationSectionType.NORMAL)
+        title = Text("The Deflection of a Loaded String", color=BLACK)
+        title.align_to(titleDot, LEFT)
+        title.align_to(titleDot, UP)
+        loaded = ImageMobject("loadedstring.png").scale(0.3).shift(RIGHT*2).shift(DOWN)
+        eq = MathTex(r"u''(x) = \phi(x);\quad u(0)=u(1)=0", color=BLACK, font_size=40).shift(LEFT*4)
+        self.add(title, loaded, eq)
         self.wait(1)
